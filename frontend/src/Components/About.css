@@ -1,0 +1,28 @@
+.profile-container{
+    width: 60%;
+    height: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+#profile-pic{
+   width: 150px;
+   height: 180px;
+}
+.profile-links{
+    display: flex;
+    flex-direction: column;
+}
+.profile-links a{
+    text-decoration: none;
+}
+.about-title label{
+    font-weight: 600;
+    font-family: 'Quantico', sans-serif;
+}
+
+@media (min-width: 768px){
+
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 21.333333%;
+    }
+}
