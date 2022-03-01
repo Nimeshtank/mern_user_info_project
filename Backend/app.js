@@ -27,6 +27,6 @@ app.use(require('./router/auth.js'));                    //middleware
 
          
 app.listen(PORT, ()=>{
-    console.log(`server is running at 3000`)    //server is listening
+    console.log(`server is running at ${PORT}`)    //server is listening
 })
 

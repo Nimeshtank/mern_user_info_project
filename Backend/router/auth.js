@@ -52,6 +52,7 @@ router.post('/signin', async (req, res) => {
 
         if (!email || !password) {
             res.status(400).json({ error: 'All field are required' });
+        
         }
 
         const userLogIn = await User.findOne({ email: email });
@@ -81,7 +82,7 @@ router.post('/signin', async (req, res) => {
         }
 
     } catch (err) {
-        console.log(err);
+        console.log('user filled inconsistent data');
     }
 })
 

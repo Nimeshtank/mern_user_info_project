@@ -22,7 +22,7 @@ export default function Contact() {
               </div>
 
               <div className="contact-info-item d-flex justify-content-start align-items-center">
-                <i class="zmdi zmdi-email zmdi-hc-2x mdc-text-red text-success ms-2"></i>
+                <i className="zmdi zmdi-email zmdi-hc-2x mdc-text-red text-success ms-2"></i>
                 <div className="contact-info-content ms-4">
                   <div className="contact-info-title fw-bold text-success">
                     Email
@@ -33,7 +33,7 @@ export default function Contact() {
                 </div>
               </div>
               <div className="contact-info-item d-flex justify-content-start align-items-center">
-                <i class="zmdi zmdi-pin-drop zmdi-hc-2x mdc-text-red text-success ms-2"></i>
+                <i className="zmdi zmdi-pin-drop zmdi-hc-2x mdc-text-red text-success ms-2"></i>
                 <div className="contact-info-content ms-4">
                   <div className="contact-info-title fw-bold text-success">
                     Address
@@ -59,9 +59,9 @@ export default function Contact() {
                 </div>
                 <form id="contact-form">
                   <div className="contact-form-inputs d-flex justify-content-between my-3">
-                    <input type="text" className="form_input p-1 " placeholder='Your Name' required='true' />
-                    <input type="email" className="form_input p-1" placeholder='Your Email' required='true' />
-                    <input type="text" className="form_input p-1" placeholder='Your Mobile Number' required='true' />
+                    <input type="text" className="form_input p-1 " placeholder='Your Name' required={true} />
+                    <input type="email" className="form_input p-1" placeholder='Your Email' required={true} />
+                    <input type="text" className="form_input p-1" placeholder='Your Mobile Number' required={true} />
                   </div>
                   <div className="contact-form-textarea mt-5">
                     <textarea className="text_field_contact " row='10' cols='30' placeholder='Message' ></textarea>

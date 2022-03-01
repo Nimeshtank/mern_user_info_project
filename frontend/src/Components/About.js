@@ -18,12 +18,12 @@ export default function About() {
                 <h5>Nimesh Tank</h5>
                 <h6>Full Stack Developer</h6>
                 <p className="profile-rating mt-3 mb-5">Rating: <span className="span-rating">1/10</span></p>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                <ul className="nav nav-tabs" id="myTab" role="tablist">
+                  <li className="nav-item" role="presentation">
+                    <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
                   </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Timeline</button>
+                  <li className="nav-item" role="presentation">
+                    <button className="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Timeline</button>
                   </li>
                 </ul>
               </div>
@@ -48,7 +48,7 @@ export default function About() {
               <div className="tab-content profile-tab" id='myTabContent'>
 
                 {/* About Tab  */}
-                <div class="tab-pane fade show active mb-4" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div className="tab-pane fade show active mb-4" id="home" role="tabpanel" aria-labelledby="home-tab">
                   <div className="row ">
                     <div className="col-md-6 about-title">
                       <label>User Id</label>
@@ -92,7 +92,7 @@ export default function About() {
                 </div>
 
                 {/* Timeline Tab */}
-                <div class="tab-pane fade mb-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div className="tab-pane fade mb-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                   <div className="row">
                     <div className="col-md-6 about-title">
                       <label>Experience</label>
@@ -126,4 +126,5 @@ export default function About() {
     </>
   )
 }
+
 
