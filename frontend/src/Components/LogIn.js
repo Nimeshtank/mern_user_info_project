@@ -45,7 +45,7 @@ export default function LogIn() {
             </div>
 
             <div className='signin-form'>
-              <h4 className='form-title'>Sign Up</h4>
+              <h4 className='form-title'>Sign In</h4>
               <form method='POST' className='register-form' id='register-form'>
                 <div className='form-input'>
                   <label htmlFor='name'>

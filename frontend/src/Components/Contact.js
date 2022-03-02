@@ -4,7 +4,8 @@ import {useState, useEffect} from 'react';
 
 export default function Contact() {
 
-  const [myData, setMyData] = useState({});
+  const [myData, setMyData] = useState({name: "", email: "", phone:"", message:""});
+
   const ContactPageData = async ()=>{
      try{
         const res = await fetch('/about', {
@@ -15,9 +16,9 @@ export default function Contact() {
         });
 
         const data = await res.json();
-        setMyData(data);
-        console.log(myData);
-
+        setMyData({...myData, name: data.name, email: data.email, phone: data.phone});
+        // console.log(myData);
+ 
         if(!res.status === 200){
            const error = new Error(res.error);
            throw error;
@@ -31,6 +32,38 @@ export default function Contact() {
   useEffect(()=>{
     ContactPageData();
   }, []);
+
+  const handleChange =(e)=>{
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setMyData({...myData, [name]: value})
+  }
+
+  const submitContactData= async (e) =>{
+    e.preventDefault();
+    const {name, email, phone, message} = myData;
+
+    const res = await fetch("/contact" , {
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        name, email, phone, message
+      })
+    })
+
+    const data = await res.json();
+    if(!data.name || !data.email || !data.phone || !data.message){
+      alert('Message not sent, Fill all data');
+    }else{
+      alert('Your mesaage sent');
+      setMyData({...myData, message: ""});
+    }
+  }
+
+
   return (
     <>
       {/* contact info grid */}
@@ -86,17 +119,17 @@ export default function Contact() {
                 <div className="contact-form-title fw-bold fs-3">
                   Contact Us
                 </div>
-                <form id="contact-form">
+                <form id="contact-form" method='POST'>
                   <div className="contact-form-inputs d-flex justify-content-between my-3">
-                    <input type="text" className="form_input p-1 " placeholder='Your Name' value={myData.name} required={true} />
-                    <input type="email" className="form_input p-1" placeholder='Your Email' value={myData.email} required={true} />
-                    <input type="text" className="form_input p-1" placeholder='Your Mobile Number' value={myData.phone} required={true} />
+                    <input type="text" className="form_input p-1 " placeholder='Your Name' value={myData.name}  name='name'  onChange={handleChange} required={true} />
+                    <input type="email" className="form_input p-1" placeholder='Your Email' value={myData.email}  name='email'   onChange={handleChange} required={true} />
+                    <input type="text" className="form_input p-1" placeholder='Your Mobile Number' value={myData.phone}  name='phone' onChange={handleChange}  required={true} />
                   </div>
                   <div className="contact-form-textarea mt-5">
-                    <textarea className="text_field_contact " row='10' cols='30' placeholder='Message' ></textarea>
+                    <textarea className="text_field_contact " row='10' cols='30' placeholder='Message' value={myData.message} name='message' onChange={handleChange} ></textarea>
                   </div>
                   <div className="contact-form-button mt-4">
-                    <button className="btn  btn-dark contact-submit-button">Send Message</button>
+                    <button className="btn  btn-dark contact-submit-button" onClick={submitContactData}>Send Message</button>
                   </div>
                 </form>
               </div>

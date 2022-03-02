@@ -95,8 +95,34 @@ router.get('/about', authenticate, (req, res)=>{
     console.log('hello my about page');
     res.send(req.rootUser);
 })
+
+// get data for contact page and home page
 router.get('/getdata', authenticate, (req, res)=>{
     console.log('hello my about page');
     res.send(req.rootUser);
 })
+
+//data from Contact Us
+router.post('/contact', authenticate, async (req, res)=>{
+  try{
+        const {name, email, phone, message} = req.body;
+
+        if(!name || !email || !phone || !message){
+            res.json('Please fill all data');
+            console.log('Please fill all data');
+        }
+
+        const userContact = await User.findOne({_id: req.UserID});
+        if(userContact){
+                const userMeassage = await userContact.addMessage(name, email, phone, message);
+
+                await userContact.save();
+                res.status(201).json({message: "User contact successfully"});
+        }
+  }catch(err){
+        console.log(err)
+  }
+});
+
+
 module.exports = router;
