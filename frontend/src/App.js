@@ -7,7 +7,7 @@ import Contact from './Components/Contact';
 import LogIn from './Components/LogIn';
 import SignUp from './Components/SignUp';
 import { Route, Routes } from 'react-router-dom';
-import Error from './Components/Error'; 
+import ErrorPage from './Components/ErrorPage'; 
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
         <Route  path='/contact' element={ <Contact />} />
         <Route  path='/login' element={ <LogIn />} />
         <Route  path='/signup' element={  <SignUp />} />
-        <Route  element={<Error />} />
+        <Route  element={<ErrorPage />} />
       </Routes>
     </div>
   )

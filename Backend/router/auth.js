@@ -1,9 +1,12 @@
 const express = require('express');
+const app = express();
 const router = express.Router();  
-const bcrypt = require('bcryptjs'); 
-const jwt = require('jsonwebtoken');                                      //router for backend
+const bcrypt = require('bcryptjs');  
+const cookieParser = require('cookie-parser');
+const authenticate = require('../middleware/authenticate');                                    //router for backend
 
 require('../db/connection');
+router.use(cookieParser()) ;
 const User = require('../model/userSchema');
 
 router.get('/', (req, res) => {                                               //to send data to user
@@ -65,8 +68,8 @@ router.post('/signin', async (req, res) => {
             let token = await userLogIn.generateAuthToken();
             // console.log(token); 
             
-            res.cookie("jwttiken", token, {
-                expires: new Date(Date.now() + 25892000000),               // 30days in (mili seconds)
+            res.cookie("jwtoken", token, {
+                expires: new Date(Date.now() + 25892000000),     // 30days in (mili seconds)
                 httpOnly: true
             });
             
@@ -84,6 +87,16 @@ router.post('/signin', async (req, res) => {
     } catch (err) {
         console.log('user filled inconsistent data');
     }
-})
+});
 
+// About us page
+
+router.get('/about', authenticate, (req, res)=>{
+    console.log('hello my about page');
+    res.send(req.rootUser);
+})
+router.get('/getdata', authenticate, (req, res)=>{
+    console.log('hello my about page');
+    res.send(req.rootUser);
+})
 module.exports = router;

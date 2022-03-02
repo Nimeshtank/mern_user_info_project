@@ -1,7 +1,36 @@
 import React from 'react';
 import './Contact.css';
+import {useState, useEffect} from 'react';
 
 export default function Contact() {
+
+  const [myData, setMyData] = useState({});
+  const ContactPageData = async ()=>{
+     try{
+        const res = await fetch('/about', {
+          method: "GET",
+          headers: {
+            "Content-Type" : "application/json"
+          }
+        });
+
+        const data = await res.json();
+        setMyData(data);
+        console.log(myData);
+
+        if(!res.status === 200){
+           const error = new Error(res.error);
+           throw error;
+        }
+     }catch(err){
+         console.log('Contact Page : Not Loged In!!');
+         console.log(err);
+     }
+  }
+
+  useEffect(()=>{
+    ContactPageData();
+  }, []);
   return (
     <>
       {/* contact info grid */}
@@ -59,9 +88,9 @@ export default function Contact() {
                 </div>
                 <form id="contact-form">
                   <div className="contact-form-inputs d-flex justify-content-between my-3">
-                    <input type="text" className="form_input p-1 " placeholder='Your Name' required={true} />
-                    <input type="email" className="form_input p-1" placeholder='Your Email' required={true} />
-                    <input type="text" className="form_input p-1" placeholder='Your Mobile Number' required={true} />
+                    <input type="text" className="form_input p-1 " placeholder='Your Name' value={myData.name} required={true} />
+                    <input type="email" className="form_input p-1" placeholder='Your Email' value={myData.email} required={true} />
+                    <input type="text" className="form_input p-1" placeholder='Your Mobile Number' value={myData.phone} required={true} />
                   </div>
                   <div className="contact-form-textarea mt-5">
                     <textarea className="text_field_contact " row='10' cols='30' placeholder='Message' ></textarea>

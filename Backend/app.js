@@ -1,15 +1,16 @@
 const express = require('express');
-
 const dotenv = require('dotenv');
 const app = express();
 
 dotenv.config({path: './config.env'});                   //only need to write once
 
-const PORT = process.env.PORT;                           // imported from config.env
+const PORT = process.env.PORT;      
+// imported from config.env
 require('./db/connection');   
 // const User = require('./model/userSchema');           //import 
 app.use(express.json());                                 //middleware ----json to object 
-app.use(require('./router/auth.js'));                    //middleware
+app.use(require('./router/auth.js'));   
+           //middleware
 
 //linked router file
 

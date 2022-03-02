@@ -1,23 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './About.css';
 import profilePic from '../Images/myImage.jpeg'
+import {useNavigate } from 'react-router-dom'
 
 export default function About() {
+
+  const [myData, setMyData] = useState({});
+  const navigate = useNavigate();   
+
+  const getAboutPage = async ()=>{
+     try{
+        const res = await fetch('/about', {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type" : "application/json"
+          },
+          credentials: "include"
+        });
+
+        const data = await res.json();
+        setMyData(data);
+        console.log(myData);
+
+        if(!res.status === 200){
+           const error = new Error(res.error);
+           throw error;
+        }
+     }catch(err){
+         navigate('/login');
+         console.log('Not Loged In!!')
+     }
+  }
+
+  useEffect(()=>{
+    getAboutPage();
+  }, []);
+
   return (
     <>
       <div className='container mt-5 profile-container'>
-        <form action="" >
+        <form method='GET' >
 
           {/* Top profile part */}
           <div className="row justify-content-center">
             <div className="col-md-4 mt-5">
-              <img src={profilePic} alt="Profile-Pic" id='profile-pic' />
+              <img src={myData.name === "Nimesh Y. Tank" ? profilePic : "" } alt="Profile-Pic" id='profile-pic' />
             </div>
             <div className="col-md-6 mt-5">
               <div className="profile-heading">
-                <h5>Nimesh Tank</h5>
-                <h6>Full Stack Developer</h6>
-                <p className="profile-rating mt-3 mb-5">Rating: <span className="span-rating">1/10</span></p>
+                <h5>{myData.name}</h5>
+                <h6>{myData.Profession}</h6>
+                <p className="profile-rating mt-3 mb-5">Rating: <span className="span-rating">{`${(Math.random() * 10).toFixed(2)}/10`}</span></p>
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                   <li className="nav-item" role="presentation">
                     <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
@@ -40,7 +74,7 @@ export default function About() {
               <div className="profile-links mt-3">
                 <p>Social Links</p>
                 <a href="www.google.com">LinkedIn</a>
-                <a href="www.google.com">GitHub</a>
+                <a href="https://github.com/Nimeshtank?tab=repositories" target="_blank">GitHub</a>
               </div>
             </div>
 
@@ -62,7 +96,7 @@ export default function About() {
                       <label>Name</label>
                     </div>
                     <div className="col-md-6">
-                      <p>Nimesh Tank</p>
+                      <p>{myData.name}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -70,7 +104,7 @@ export default function About() {
                       <label>Email</label>
                     </div>
                     <div className="col-md-6">
-                      <p>nimesh.ytank@gmail.com</p>
+                      <p>{myData.email}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -78,7 +112,7 @@ export default function About() {
                       <label>Phone</label>
                     </div>
                     <div className="col-md-6">
-                      <p>5481245879</p>
+                      <p>{myData.phone}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -86,7 +120,7 @@ export default function About() {
                       <label>Profession</label>
                     </div>
                     <div className="col-md-6">
-                      <p>Full Stack Developer</p>
+                      <p>{myData.profession}</p>
                     </div>
                   </div>
                 </div>

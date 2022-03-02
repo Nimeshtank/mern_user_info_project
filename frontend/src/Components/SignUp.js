@@ -28,7 +28,7 @@ export default function Signup() {
           name, email, phone, profession, password, cpassword
         })
     })
-    const data =  res.json();
+    const data = await res.json();
 
     if(res.status === 422 || !data){
       window.alert('Invalid Reg')
