@@ -8,7 +8,7 @@ export default function Contact() {
 
   const ContactPageData = async ()=>{
      try{
-        const res = await fetch('/about', {
+        const res = await fetch('/getdata', {
           method: "GET",
           headers: {
             "Content-Type" : "application/json"
@@ -40,6 +40,7 @@ export default function Contact() {
     setMyData({...myData, [name]: value})
   }
 
+  //data to backend
   const submitContactData= async (e) =>{
     e.preventDefault();
     const {name, email, phone, message} = myData;
@@ -55,7 +56,7 @@ export default function Contact() {
     })
 
     const data = await res.json();
-    if(!data.name || !data.email || !data.phone || !data.message){
+    if(!data){
       alert('Message not sent, Fill all data');
     }else{
       alert('Your mesaage sent');
