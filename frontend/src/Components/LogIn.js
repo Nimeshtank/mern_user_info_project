@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css';
 import loginImg from '../Images/login-vector.jpg'
 import { Link, useNavigate } from 'react-router-dom';
+import {UserContext} from '../App';
 
 {/* <img src={loginImg} alt="LogIn-PNG" /> */ }
 export default function LogIn() {
+
   const navigate = useNavigate();
+  const {state, dispatch} = useContext(UserContext);
+
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
@@ -28,6 +32,7 @@ export default function LogIn() {
     if(res.status === 400 || !data){
       window.alert('Invalid login');
     }else{
+      dispatch({type: "USER", payload: true})
       window.alert('successful login');
       navigate('/');
     }
@@ -35,7 +40,7 @@ export default function LogIn() {
   return (
     <>
       <section className='sign-in'>
-        <div className='container  mt-5' >
+      
           <div className='signin-content'>
             <div className="signin-img">
               <figure className="signin-fig">
@@ -51,21 +56,21 @@ export default function LogIn() {
                   <label htmlFor='name'>
                     <i className="zmdi zmdi-account"></i>
                   </label>
-                  <input type="text" id="email" autoComplete='off' placeholder='Your Email' name='email' className='form-input-element' autoComplete='on' value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                  <input type="email" id="email" placeholder='Your Email' name='email' className='form-input-element' autoComplete='on' value={email} onChange={(e)=> setEmail(e.target.value)}/>
                 </div>
                 <div className='form-input'>
                   <label htmlFor='email'>
                     <i className="zmdi zmdi-email"></i>
                   </label>
-                  <input type="text" id="password" autoComplete='off' placeholder='Your Password' name='password' className='form-input-element' value={pass} onChange={(e)=> setPass(e.target.value)} />
+                  <input type="password" id="password" autoComplete='off' placeholder='Your Password' name='password' className='form-input-element' value={pass} onChange={(e)=> setPass(e.target.value)} />
                 </div>
-                <div className="form-input form-button">
+                <div className="form-button mt-3">
                   <input type="submit" id='signin' name='signin' className='form-submit' value='Log In' onClick={handleSubmit} />
                 </div>
               </form>
             </div>
           </div>
-        </div>
+      
       </section>
 
     </>

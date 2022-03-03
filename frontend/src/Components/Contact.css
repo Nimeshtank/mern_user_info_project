@@ -34,3 +34,22 @@
 .contact-submit-button{
     background-color: rgb(49, 77, 8);
 }
+
+@media screen and (max-width: 990px){
+    .infodata{
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .contact-form-inputs{
+    
+        flex-direction: column;
+    }
+    .form_input {
+        font-size: smaller;
+        width: min-content;
+        margin-top: .5em;
+    }
+
+}

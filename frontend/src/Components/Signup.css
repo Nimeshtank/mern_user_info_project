@@ -4,12 +4,13 @@
 }
 .signup-content{
     position: relative;
-    right: -6%;
+    left: 50%;
+    transform: translate(-57%, -5%);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 55em;
-    height: 28em;
+    height: auto;
     margin: 3.74rem;
     box-shadow: 0px 3px 15px  rgba(0, 0, 0, 0.35);
     font-family: 'El Messiri', sans-serif;
@@ -55,6 +56,24 @@
 .form-input{
   margin-top: 1rem;
   width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px, 0;
+  border-bottom: 1px solid black;
+}
+
+.form-input i{
+    width: 26px;
+    float: left;
+    text-align: center;
+}
+
+.form-input input{
+    border: none;
+    outline: none;
+    background: none;
+    font-size: medium;
+    padding-left: 10px;
 }
 
 #signup{
@@ -63,4 +82,36 @@
     border: none;
     background-color: cadetblue;
     color: white;
+    border: none;
+    
 }
+
+@media screen and (max-width: 990px) {
+  
+    .signup-content{
+        width: fit-content;
+        display: flex;
+        flex-direction:column-reverse;
+        transform: translate(-70%, 0);
+    }
+
+   .form-input{
+       display: flex;
+       flex-wrap: nowrap;
+   }
+
+   .signup-form{
+       margin-top: 0;
+   }
+
+   #signimg{
+    width: 170px;
+    height: 160px;
+   }
+
+   .signup-form{
+    padding-top: 0;
+    padding-bottom: 2rem; 
+    }
+
+ }

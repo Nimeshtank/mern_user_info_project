@@ -70,7 +70,7 @@ export default function Contact() {
       <div className="contact-info mt-5">
         <div className="container ">
           <div className="row justify-content-around">
-            <div className="col-lg-10  d-flex justify-content-between ">
+            <div className="col-md-10  d-flex justify-content-between infodata ">
               <div className="contact-info-item d-flex justify-content-start align-items-center">
                 <i className="zmdi zmdi-smartphone-iphone zmdi-hc-2x mdc-text-red text-success ms-2" />
                 <div className="contact-info-content ms-4 ">

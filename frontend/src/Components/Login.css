@@ -1,20 +1,21 @@
 *{
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 .signin-content{
     position: relative;
-    right: -15%;
-    display: flex;
+    left: 50%;
+    transform: translate(-50%, 25%);
     flex-direction: row;
     justify-content: space-evenly;
-    width: 45em;
-    height: 23em;
-    box-shadow: 0px 3px 15px  rgba(0, 0, 0, 0.35);
+    border-radius: 15px;  
     font-family: 'El Messiri', sans-serif;
-    border-radius: 15px;
-    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    height: auto;
+    box-shadow: 0px 3px 15px  rgba(0, 0, 0, 0.35); 
+    display: flex;
+    width: 45em;
+    
 }
 .signin-form{
     margin: 2em;
@@ -51,3 +52,23 @@
     background-color: cadetblue;
     color: white;
 }
+
+@media screen and (max-width: 990px) {
+  
+     .signin-content{
+         width: auto;
+         display: flex;
+         flex-direction: column ;
+         transform: translate(-50%, 5%);
+     }
+
+    .form-input{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .signin-form{
+        margin-top: 0;
+    }
+
+  }
